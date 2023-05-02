@@ -16,7 +16,7 @@ const EmailItem = (props) => {
 
 const displayEmails = ((emails) => {
     const read = document.querySelector('#read')
-    const unread = document.querySelector('#unread')
+    const unread = document.querySelector('#unread') 
     
     unread.innerHTML += emails
         .filter(email => email.unread)
