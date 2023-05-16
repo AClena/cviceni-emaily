@@ -1,9 +1,14 @@
-import { EmailList } from './EmailList/index.js';
+import { EmailSection } from './EmailSection/index.js';
 
-const container = document.querySelector('#app');
-
-fetch('https://apps.kodim.cz/daweb/trening-api/apis/emails')
-    .then(res => res.json())
-    .then(data => {
-        container.innerHTML += EmailList({ emails: data.emails })
+document.querySelector('#app').append(
+    EmailSection({ 
+        heading: 'Přečtené', 
+        emails: 'loading', 
+        folder: 'read' 
+    }),
+    EmailSection({ 
+        heading: 'Nepřečtené', 
+        emails: 'loading', 
+        folder: 'unread' 
     })
+)
