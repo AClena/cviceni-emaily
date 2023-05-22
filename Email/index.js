@@ -1,5 +1,5 @@
 export const Email = (props) => {
-    const { id, senderName, subject, time, unread, body } = props;
+    const { id, sender, subject, time, unread, body } = props;
 
     const emailEl = document.createElement('div')
     emailEl.classList.add('email')
@@ -10,7 +10,7 @@ export const Email = (props) => {
         <div class="email__head">
             <button class="email__icon ${unread ? "email__icon--closed" : "email__icon--opened"}"></button>
             <div class="email__info">
-                <div class="email__sender">${senderName}</div>
+                <div class="email__sender">${sender.name}</div>
                 <div class="email__subject">${subject}</div>
             </div>
             <div class="email__time">${time}</div>
@@ -24,12 +24,12 @@ export const Email = (props) => {
                 .then((response) => response.json())
                 .then((data) => {
                     emailEl.replaceWith(
-                        Email({ id, senderName, subject, time, unread: false, body: data.body })
+                        Email({ id, sender, subject, time, unread: false, body: data.body })
                     )
                 });
         } else {
             emailEl.replaceWith(
-                Email({ id, senderName, subject, time, unread })
+                Email({ id, sender, subject, time, unread })
             )
         }
     })

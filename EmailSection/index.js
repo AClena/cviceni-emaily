@@ -7,7 +7,7 @@ export const EmailSection = (props) => {
   inbox.classList.add('inbox')
   inbox.innerHTML = `<h2>${heading}</h2>`
 
-  if (emails === 'loading') {
+  if (!emails) {
     fetch(`https://apps.kodim.cz/daweb/trening-api/apis/emails/?folder=${folder}`)
       .then((response) => response.json())
       .then((data) => {
@@ -16,13 +16,7 @@ export const EmailSection = (props) => {
         )
     });
   } else {
-    const emailEls = emails.map((email) => Email({
-      id: email.id, 
-      senderName: email.sender.name, 
-      subject: email.subject, 
-      time: email.time, 
-      unread: email.unread
-    }))
+    const emailEls = emails.map((email) => Email(email))
     inbox.append(...emailEls)
   }
 
